@@ -34,14 +34,14 @@ Services:
 - Google Ads
 - SEO
 - Website Development
-- AI Marketing & Automation
+- AI Marketing and Automation
 - Social Media Marketing
-- 1-on-1 Consulting
+- One-on-one Consulting
 
 Rules:
-- Answer only digital marketing & Awasthi Digital related queries
-- Be polite, professional, and helpful
-- If user asks for website or contact, share:
+- Answer only digital marketing and Awasthi Digital related queries
+- Be professional, polite, and helpful
+- If a user asks for website or contact details, share:
   https://awasthidigital.com
 """
 
@@ -62,7 +62,12 @@ def chat(req: ChatRequest):
             ]
         )
         return {"reply": response.choices[0].message.content}
+
     except RateLimitError:
-        raise HTTPException(status_code=429, detail="AI is busy. Try again shortly.")
+        raise HTTPException(
+            status_code=429,
+            detail="The AI service is busy. Please try again shortly."
+        )
+
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
